@@ -1,0 +1,19 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ubuntu/cicdtest
+    overwrite: yes
+permissions:
+  - object: /home/ubuntu/cicdtest
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+
+//hooks부분은 배포를 위한 수명주기 이벤트마다 특정 동작들을 할 스크립트를 정의
+hooks:
+  AfterInstall:
+    - location: scripts/after-install.sh
+      timeout: 300
+      runas: root
